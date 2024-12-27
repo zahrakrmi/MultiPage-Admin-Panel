@@ -6,22 +6,22 @@ import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 
 
-export default function ActionAreaCard2() {
+export default function ActionAreaCard() {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
-          image="/2.png"
+          image="/1.png"
           alt="green iguana"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-          Weekly Orders  
+          Weekly Sales 
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          45,6334
+          $ 15,0000
           </Typography>
         </CardContent>
       </CardActionArea>

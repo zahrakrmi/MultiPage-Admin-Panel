@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { ScatterChart } from '@mui/x-charts/ScatterChart';
 

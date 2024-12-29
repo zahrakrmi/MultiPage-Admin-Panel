@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
@@ -11,12 +11,17 @@ import Typography from '@mui/material/Typography';
 import { createTheme } from '@mui/material/styles';
 import CloudCircleIcon from '@mui/icons-material/CloudCircle';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import GroupIcon from '@mui/icons-material/Group';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout, ThemeSwitcher } from '@toolpad/core/DashboardLayout';
 import { useDemoRouter } from '@toolpad/core/internal';
+import AccountDemoSignedIn from '../account';
+import BasicCard from '../Card';
+import SimplePaper from '../Card';
 
 const NAVIGATION = [
   {
@@ -29,9 +34,19 @@ const NAVIGATION = [
     icon: <DashboardIcon />,
   },
   {
+    segment: 'Inventory',
+    title: 'Inventory',
+    icon: <InventoryIcon />,
+  },
+  {
     segment: 'orders',
     title: 'Orders',
     icon: <ShoppingCartIcon />,
+  },
+  {
+    segment: 'Customers',
+    title: 'Customers',
+    icon: <GroupIcon />,
   },
 ];
 
@@ -51,7 +66,17 @@ const demoTheme = createTheme({
   },
 });
 
+
 function DemoPageContent({ pathname }) {
+  const page ={
+    '/dashboard':<SimplePaper/>,
+    '/Inventory':<SimplePaper/>,
+    '/orders':<SimplePaper/>,
+    '/Customers':<SimplePaper/>
+  }
+  return page[pathname] || <div>Page not found</div>;
+
+  
   return (
     <Box
       sx={{
@@ -62,7 +87,7 @@ function DemoPageContent({ pathname }) {
         textAlign: 'center',
       }}
     >
-      <Typography>Dashboard content for {pathname}</Typography>
+      <Typography>Welcome to page {pathname}</Typography>
     </Box>
   );
 }
@@ -103,6 +128,7 @@ function ToolbarActionsSearch() {
         }}
         sx={{ display: { xs: 'none', md: 'inline-block' }, mr: 1 }}
       />
+        <CloudCircleIcon fontSize="large" color="primary" />
       <ThemeSwitcher />
     </Stack>
   );
@@ -114,7 +140,7 @@ function SidebarFooter({ mini }) {
       variant="caption"
       sx={{ m: 1, whiteSpace: 'nowrap', overflow: 'hidden' }}
     >
-      {mini ? '© MUI' : `© ${new Date().getFullYear()} Made with love by MUI`}
+      {mini ? '© MUI' : `© ${new Date().getFullYear()} code by zahrakarami`}
     </Typography>
   );
 }
@@ -126,9 +152,10 @@ SidebarFooter.propTypes = {
 function CustomAppTitle() {
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
-      <CloudCircleIcon fontSize="large" color="primary" />
-      <Typography variant="h6">My App</Typography>
-      <Chip size="small" label="BETA" color="info" />
+      
+      <AccountDemoSignedIn/>
+      <Typography variant="h6">My Dashboard</Typography>
+      {/* <Chip size="small" label="BETA" color="info" /> */}
       <Tooltip title="Connected to production">
         <CheckCircleIcon color="success" fontSize="small" />
       </Tooltip>
@@ -141,7 +168,7 @@ function DashboardLayoutSlots(props) {
 
   const router = useDemoRouter('/dashboard');
 
-  
+  // Remove this const when copying and pasting into your project.
   const demoWindow = window !== undefined ? window() : undefined;
 
   return (
@@ -165,6 +192,7 @@ function DashboardLayoutSlots(props) {
 }
 
 DashboardLayoutSlots.propTypes = {
+
   window: PropTypes.func,
 };
 

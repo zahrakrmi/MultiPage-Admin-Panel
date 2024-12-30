@@ -20,8 +20,10 @@ import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout, ThemeSwitcher } from '@toolpad/core/DashboardLayout';
 import { useDemoRouter } from '@toolpad/core/internal';
 import AccountDemoSignedIn from '../account';
-import BasicCard from '../Card';
 import SimplePaper from '../Card';
+import DataTable from '../inventory';
+import RowAndColumnSpacing from '../GridOrders';
+import ResponsiveGrid from '../Gridimg';
 
 const NAVIGATION = [
   {
@@ -70,26 +72,11 @@ const demoTheme = createTheme({
 function DemoPageContent({ pathname }) {
   const page ={
     '/dashboard':<SimplePaper/>,
-    '/Inventory':<SimplePaper/>,
-    '/orders':<SimplePaper/>,
-    '/Customers':<SimplePaper/>
+    '/Inventory':<DataTable/>,
+    '/orders':<RowAndColumnSpacing/>,
+    '/Customers':<ResponsiveGrid/>
   }
   return page[pathname] || <div>Page not found</div>;
-
-  
-  return (
-    <Box
-      sx={{
-        py: 4,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center',
-      }}
-    >
-      <Typography>Welcome to page {pathname}</Typography>
-    </Box>
-  );
 }
 
 DemoPageContent.propTypes = {
